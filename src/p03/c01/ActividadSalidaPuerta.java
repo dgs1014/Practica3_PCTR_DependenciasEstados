@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * @author Diego
  *
  */
-public class ActividadSalidaPuerta{
+public class ActividadSalidaPuerta implements Runnable{
 
 	private static final int NUMENTRADAS = 20;
 	private String puerta;
