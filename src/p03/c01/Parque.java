@@ -7,6 +7,8 @@ public class Parque implements IParque{
 
 
 	// TODO 
+	private static final int AFOROMAX = 50;
+	private static final int AFOROMIN = 0;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
@@ -81,16 +83,12 @@ public class Parque implements IParque{
 		
 	}
 	
-	protected void comprobarAntesDeEntrar(){	// TODO
-		//
-		// TODO
-		//
+	protected void comprobarAntesDeEntrar(){	
+		assert contadorPersonasTotales<AFOROMAX :"PRE: El numero de personas dentro del parque es el maximo del aforo permitido";
 	}
 
-	protected void comprobarAntesDeSalir(){		// TODO
-		//
-		// TODO
-		//
+	protected void comprobarAntesDeSalir(){		
+		assert contadorPersonasTotales>AFOROMIN :"PRE: El numero de personas dentro del parque es el minimo, no hay personas";
 	}
 
 
