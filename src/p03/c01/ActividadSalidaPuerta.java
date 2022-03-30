@@ -11,7 +11,12 @@ public class ActividadSalidaPuerta implements Runnable{
 	private static final int NUMENTRADAS = 20;
 	private String puerta;
 	private IParque parque;
-
+	/**
+	 * Metodo ActividadSalidaPuerta el cual proporciona la salida por la puerta
+	 * 
+	 * @param puerta
+	 * @param parque
+	 */
 	public ActividadSalidaPuerta(String puerta, IParque parque) {
 		this.puerta = puerta;
 		this.parque = parque;
