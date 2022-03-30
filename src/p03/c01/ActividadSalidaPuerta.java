@@ -5,11 +5,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author Diego
- *
- */
+
 public class ActividadSalidaPuerta implements Runnable{
 
 	private static final int NUMENTRADAS = 20;

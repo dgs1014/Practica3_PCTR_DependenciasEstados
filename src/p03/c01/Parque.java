@@ -11,10 +11,9 @@ public class Parque implements IParque{
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 
 
-	public Parque() {	// TODO
+	public Parque() {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
-		// TODO
 	}
 
 
@@ -43,9 +42,7 @@ public class Parque implements IParque{
 
 	}
 
-	// 
-	// TODO Método salirDelParque
-	//
+	
 	@Override
 	public synchronized void  salirDelParque(String puerta) throws InterruptedException{
 
@@ -56,9 +53,11 @@ public class Parque implements IParque{
 
 		comprobarAntesDeSalir();
 
+		// Decrementamos el contador total y el individual
 		contadorPersonasTotales--;
 		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)-1);
 		
+		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Salida");
 		
 		checkInvariante();
@@ -90,18 +89,18 @@ public class Parque implements IParque{
 
 	protected void checkInvariante() {
 		assert sumarContadoresPuerta() == contadorPersonasTotales : "INV: La suma de contadores de las puertas debe ser igual al valor del contador del parte";
-		assert contadorPersonasTotales < AFOROMAX :"PRE: El numero de personas dentro del parque es el maximo del aforo permitido";
-		assert contadorPersonasTotales > AFOROMIN :"PRE: El numero de personas dentro del parque es el minimo, no hay personas";
+		assert contadorPersonasTotales <= AFOROMAX :"PRE: El numero de personas dentro del parque es el maximo del aforo permitido";
+		assert contadorPersonasTotales >= AFOROMIN :"PRE: El numero de personas dentro del parque es el minimo, no hay personas";
 
 	}
 
-	protected void comprobarAntesDeEntrar() throws InterruptedException{	
+	protected synchronized void comprobarAntesDeEntrar() throws InterruptedException{	
 		while(contadorPersonasTotales >= AFOROMAX) {
 			wait();
 		}
 	}
 
-	protected void comprobarAntesDeSalir() throws InterruptedException{		
+	protected synchronized void comprobarAntesDeSalir() throws InterruptedException{		
 		while(contadorPersonasTotales <= AFOROMIN) {
 			wait();
 		}
